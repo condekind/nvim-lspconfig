@@ -27,6 +27,11 @@ configs[server_name] = {
         'requirements.txt',
         'Pipfile',
         'pyrightconfig.json',
+        'virtualenv',
+        '.venv',
+        '.git',
+        '.python-version',
+        'poetry.lock',
       }
       return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
     end,

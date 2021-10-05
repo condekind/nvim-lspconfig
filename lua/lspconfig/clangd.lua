@@ -22,7 +22,7 @@ local function switch_source_header(bufnr)
   )
 end
 
-local root_pattern = util.root_pattern('compile_commands.json', 'compile_flags.txt', '.git')
+local root_pattern = util.root_pattern('compile_commands.json', 'compile_flags.txt', '.git', 'CMakeLists.txt')
 
 local default_capabilities = vim.tbl_deep_extend(
   'force',
@@ -40,7 +40,7 @@ local default_capabilities = vim.tbl_deep_extend(
 configs.clangd = {
   default_config = {
     cmd = { 'clangd', '--background-index' },
-    filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'h', 'hpp', 'cc', 'hh' },
     root_dir = function(fname)
       local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
       return root_pattern(filename) or util.path.dirname(filename)
